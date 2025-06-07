@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter: Boy vs. Monsters</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen">
+            <h1>Space Shooter</h1>
+            <p>A brave boy in a spaceship must fight off hungry space monsters!</p>
+            <button id="start-btn">Start Game</button>
+            <div class="controls">
+                <h3>Controls:</h3>
+                <p>← → : Move Left/Right</p>
+                <p>↑ ↓ : Move Up/Down</p>
+                <p>Space: Shoot</p>
+                <p>P: Pause Game</p>
+            </div>
+        </div>
+        
+        <div id="game-screen" class="hidden">
+            <div id="score-display">Score: 0</div>
+            <div id="lives-display">Lives: 3</div>
+            <div id="level-display">Level: 1</div>
+            <div id="pause-display" class="hidden">PAUSED</div>
+            
+            <div id="player"></div>
+            <div id="game-over" class="hidden">
+                <h2>Game Over</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
