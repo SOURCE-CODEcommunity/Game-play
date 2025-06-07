@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: #111;
+    border: 2px solid #444;
+    overflow: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(233, 30, 99, 0.1) 0%, transparent 20%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+    background-size: 100% 100%;
+}
+
+#start-screen, #game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+#start-screen h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #4CAF50;
+    text-shadow: 0 0 10px #4CAF50;
+}
+
+#start-screen p {
+    margin-bottom: 2rem;
+    max-width: 80%;
+    text-align: center;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.controls {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.controls h3 {
+    margin-bottom: 10px;
+    color: #FFC107;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#player {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 80"><path d="M30 0 L60 30 L50 40 L60 50 L30 80 L0 50 L10 40 L0 30 Z" fill="%234CAF50"/><circle cx="30" cy="40" r="15" fill="%23FFC107"/><circle cx="30" cy="40" r="8" fill="%23F44336"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 5;
+    transition: transform 0.1s;
+}
+
+.bullet {
+    position: absolute;
+    width: 6px;
+    height: 20px;
+    background-color: #FFC107;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+.enemy {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M25 0 C35 10, 45 5, 50 25 C45 45, 35 40, 25 50 C15 40, 5 45, 0 25 C5 5, 15 10, 25 0" fill="%23F44336"/><circle cx="15" cy="20" r="5" fill="%23000"/><circle cx="35" cy="20" r="5" fill="%23000"/><path d="M15 35 Q25 40 35 35" stroke="%23000" stroke-width="2" fill="none"/></svg>');
+    background-size: contain;
+    z-index: 3;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.explosion {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="%23FF9800"/><circle cx="30" cy="30" r="20" fill="%23FF5722"/><circle cx="30" cy="30" r="10" fill="%23FFC107"/></svg>');
+    background-size: contain;
+    z-index: 6;
+    animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+#score-display, #lives-display, #level-display {
+    position: absolute;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 5px #4CAF50;
+    padding: 5px 10px;
+    z-index: 2;
+}
+
+#score-display {
+    top: 10px;
+    left: 10px;
+}
+
+#lives-display {
+    top: 10px;
+    right: 10px;
+}
+
+#level-display {
+    top: 40px;
+    left: 10px;
+}
+
+#pause-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #FFC107;
+    text-shadow: 0 0 10px #FF5722;
+    z-index: 7;
+}
+
+#game-over h2 {
+    font-size: 3rem;
+    color: #F44336;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #F44336;
+}
+
+#game-over p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 1;
+}
